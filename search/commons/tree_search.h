@@ -6,9 +6,33 @@
 #ifndef AIMA_TREE_SEARCH_H
 #define AIMA_TREE_SEARCH_H
 
+#include <stack>
+
 #include "optional.h"
+#include "problem.h"
 
 namespace aima {
+
+template<typename State, typename Action>
+optional<State>
+tree_search(const Problem<State, Action> &problem) {
+    // initial state inserted into frontier immediately
+    std::stack<State> frontier;
+    frontier.push(problem.initial_state());
+
+    while (!frontier.empty()) {
+        auto state = frontier.top();
+        frontier.pop();
+        if (problem.goal(state)) {
+            return state;
+        }
+        for (auto action : problem.actions(state)) {
+            frontier.push(problem.successor(state, action));
+        }
+    }
+    // return no solution
+    return {};
+}
 
 
 
