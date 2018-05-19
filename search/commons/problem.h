@@ -33,6 +33,11 @@ public:
     /// \return bool
     ///         Indication of whether or not state is a goal state
     virtual bool goal(const State &state) const = 0;
+
+    /// returns the initial state of this problem
+    /// \return state
+    ///         A brand new initial state object
+    virtual State initial_state() const = 0;
 };
 
 #endif //AIMA_PROBLEM_H
