@@ -3,8 +3,14 @@ project(aima)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_library(aima SHARED library.h)
 
+# main include
+include_directories(search search/commons utilities)
 
+# defines the search shared library
+add_subdirectory(search)
+
+# exe
 add_executable(main main.cpp)
-target_link_libraries(main aima)
+# linking SOs
+target_link_libraries(main search)
