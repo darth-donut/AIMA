@@ -15,7 +15,15 @@ namespace aima {
 
 template<typename State, typename Action>
 optional<State>
-tree_search(const Problem<State, Action> &problem) {
+tree_search(const Problem<State, Action> &problem);
+
+}   // end namespace aima
+
+
+
+template<typename State, typename Action>
+aima::optional<State>
+aima::tree_search(const Problem<State, Action> &problem) {
     // initial state inserted into frontier immediately
     std::stack<State> frontier;
     frontier.push(problem.initial_state());
@@ -32,10 +40,6 @@ tree_search(const Problem<State, Action> &problem) {
     }
     // return no solution
     return {};
-}
-
-
-
 }
 
 

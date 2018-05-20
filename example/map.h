@@ -16,14 +16,18 @@ namespace aima {
 
 class Map {
 public:
-    Map(std::string dot) : dot_(std::move(dot)) {
-        parse_dot();
+    Map() = default;
+    Map(std::string name) : name_(std::move(name)) {}
+    void add(const std::string &from, const std::string &to, double weight = .0, bool undirected = true) {
+        map_[from].push_back({to, weight});
+        if (undirected) {
+            map_[to].push_back({from, weight});
+        }
     }
-private:
-    void parse_dot();
-private:
-    std::string dot_;
-    std::unordered_map<std::string, std::vector<std::string>> map;
+    virtual ~Map() = default;
+protected:
+    std::string name_;
+    std::unordered_map<std::string, std::vector<std::pair<std::string, double>>> map_;
 };
 
 

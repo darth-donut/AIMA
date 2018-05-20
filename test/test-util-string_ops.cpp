@@ -26,4 +26,13 @@ TEST_CASE("String ops test", "SOT1") {
         const std::string str = "";
         REQUIRE(split(str) == std::vector<std::string>({""}));
     }
+
+    SECTION("String join on a vector works normally") {
+        const std::vector<std::string> tokens = {"apple", "banana", "cake"};
+        REQUIRE(join(tokens.cbegin(), tokens.cend(), "-") == "apple-banana-cake");
+    }
+    SECTION("String join on a singleton vector works normally") {
+        const std::vector<std::string> tokens = {"apple"};
+        REQUIRE(join(tokens.cbegin(), tokens.cend(), "-") == "apple");
+    }
 }

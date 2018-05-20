@@ -4,8 +4,8 @@ project(aima)
 set(CMAKE_CXX_STANDARD 14)
 
 
-# main include
-include_directories(search search/commons utilities example)
+# propagate useful include directories to all subdirectories
+include_directories(testAima search search/commons utilities example)
 
 # defines the search shared library
 add_subdirectory(search)
@@ -21,7 +21,10 @@ if (BUILD_TESTS)
     target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
     set(TEST_SOURCES
             test/main-test.cpp
-            test/test-tree-search.cpp test/test-util-string_ops.cpp)
+            test/test-tree-search.cpp
+            test/test-util-string_ops.cpp
+            example/romania.cpp
+            utilities/string_ops.cpp test/test-graph-search.cpp)
     add_executable(testAima ${TEST_SOURCES})
     add_test(NAME testAima COMMAND testAima)
 endif(BUILD_TESTS)
