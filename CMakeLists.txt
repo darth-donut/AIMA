@@ -18,11 +18,11 @@ if (BUILD_TESTS)
     target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
     add_executable(testAima
             test/main-test.cpp
-            test/test-tree-search.cpp
-            test/test-util-string_ops.cpp
+            test/search/commons/test-tree-search.cpp
+            test/utilities/test-util-string_ops.cpp
             example/romania.cpp
             utilities/string_ops.cpp
-            test/test-graph-search.cpp)
+            test/search/commons/test-graph-search.cpp)
     target_include_directories(testAima PRIVATE search search/commons utilities example)
     add_test(NAME testAima COMMAND testAima)
 endif (BUILD_TESTS)

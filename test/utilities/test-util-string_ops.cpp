@@ -7,7 +7,7 @@
 #include <string>
 
 #include "string_ops.h"
-#include "catch.hpp"
+#include "../catch.hpp"
 
 using namespace aima;
 

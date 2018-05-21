@@ -14,6 +14,18 @@
 
 namespace aima {
 
+/// A Graph-search implementation of breadth-first-search. Since tree search will take as much
+/// space as a graph (frontier), there's no real benefit of using it.
+///
+/// Time complexity  : O(b^d)
+/// Space complexity : O(b^d)
+/// Completeness     : Yes, if b is finite
+/// Optimality       : Yes, if path cost is a non-decreasing function of the depth of the node
+
+/// \tparam State state type
+/// \tparam Action action type
+/// \param problem problem definition
+/// \return goal state if present, otherwise an empty optional object
 template<typename State, typename Action> optional<State> bfs(const Problem<State, Action> &problem);
 
 

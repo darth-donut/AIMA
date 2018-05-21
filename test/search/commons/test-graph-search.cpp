@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "catch.hpp"
+#include "../../catch.hpp"
 #include "graph_search.h"
 #include "romania.h"
 
