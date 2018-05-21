@@ -12,6 +12,6 @@ add_library(search SHARED
         commons/tree_search.cpp
         commons/graph_search.cpp
         commons/graph_search.h
-        )
+        uninformed_search/bfs.h)
 
 target_include_directories(search PRIVATE utilities)
