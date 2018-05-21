@@ -49,7 +49,7 @@ aima::optional<State> aima::bfs(const Problem<State, Action> &problem) {
             if (problem.goal(candidate)) {
                 return candidate;
             }
-            if (explored.find(candidate) != explored.cend()) {
+            if (explored.find(candidate) == explored.cend()) {
                 // anything that's about to go into the frontier should also be classified as "visited"
                 explored.insert(candidate);
                 frontier.push(std::move(candidate));
