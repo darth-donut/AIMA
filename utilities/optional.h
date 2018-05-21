@@ -34,11 +34,11 @@ public:
 
     const T *operator->() const { return &obj_; }
 
-    operator bool() const { return filled_; }
+    explicit operator bool() const { return filled_; }
 
 private:
     T obj_;
-    bool filled_;
+    bool filled_ = false;
 };
 
 }       // end namespace aima
