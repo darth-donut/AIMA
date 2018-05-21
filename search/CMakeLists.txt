@@ -6,10 +6,12 @@
 # target_include_directories(util INTERFACE ${UTIL_SRC})
 
 
-set(search_src commons/tree_search.h
+add_library(search SHARED
+        commons/tree_search.h
         commons/problem.h
         commons/tree_search.cpp
         commons/graph_search.cpp
-        commons/graph_search.h)
+        commons/graph_search.h
+        )
 
-add_library(search SHARED ${search_src})
+target_include_directories(search PRIVATE utilities)
