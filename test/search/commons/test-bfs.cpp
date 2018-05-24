@@ -5,7 +5,7 @@
 
 
 #include "romania.h"
-#include "uninformed_search/bfs.h"
+#include "bfs.h"
 #include "catch.hpp"
 
 

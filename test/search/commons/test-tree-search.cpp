@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include "tree_search.h"
-#include "../../catch.hpp"
+#include "catch.hpp"
 #include "romania.h"
 
 /* does not test for paths with no solution - romanian map has cycles that tree search does not deal well with */
