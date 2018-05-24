@@ -9,6 +9,7 @@ add_subdirectory(search)
 
 # make 'utilities' a shared lib
 add_library(util SHARED ${CMAKE_SOURCE_DIR}/utilities/string_ops.cpp)
+target_include_directories(util PRIVATE ${CMAKE_SOURCE_DIR}/utilities)
 
 
 # make 'dstruct' an interface library
@@ -55,8 +56,7 @@ if (BUILD_TESTS)
             test/main-test.cpp
             test/search/commons/test-tree-search.cpp
             test/search/commons/test-graph-search.cpp
-            test/search/commons/test-bfs.cpp
-            test/dstruct/test-priority_queue.cpp)
+            test/search/commons/test-bfs.cpp)
 
     target_link_libraries(searchTest Catch example search)
     target_include_directories(searchTest
@@ -70,6 +70,23 @@ if (BUILD_TESTS)
     )
     ### end of: setup search tests
 
+
+    ### setup data structure tests
+    add_executable(dataStructureTest
+            test/main-test.cpp
+            test/dstruct/test-priority_queue.cpp)
+    target_link_libraries(dataStructureTest data_structure Catch)
+    target_include_directories(dataStructureTest
+            PRIVATE
+                dstruct
+                test
+    )
+    ### end of: setup data structure tests
+
+
+    # manually add all tests here
     add_test(NAME search_test COMMAND searchTest)
     add_test(NAME util_test COMMAND utilTest)
+    add_test(NAME data_structure_test COMMAND dataStructureTest)
+
 endif (BUILD_TESTS)

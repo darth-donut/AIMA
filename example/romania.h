@@ -12,8 +12,9 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <cassert>
 
-#include "commons/problem.h"
+#include "problem.h"
 #include "map.h"
 
 namespace aima {
@@ -25,11 +26,14 @@ friend struct std::hash<Romania>;
 
 public:
     Romania() = default;
-    Romania(std::string initial_state) : Map("Romania"), current_state_(std::move(initial_state)) {
+    explicit Romania(const std::string &initial_state)
+            : Map("Romania"),
+              current_state_(initial_state) {
+
         setup();
-        // DO NOT USE initial_state here!!! it's been moved in constructor list
-        path_.push_back(current_state_);
+        path_.push_back(initial_state);
     };
+
     std::vector<std::pair<std::string, double>> neighbours(const std::string &current_state) const {
         return map_.at(current_state);
     }
@@ -38,6 +42,17 @@ public:
 
     void advance(const std::string &location) {
         current_state_ = location;
+        if (!path_.empty()) {
+            auto parent = map_[path_.back()];
+            // get the std::pair<> between parent and this child node for the second element (path cost)
+            auto key = std::find_if(parent.cbegin(), parent.cend(), [&location](const auto &p) {
+                return p.first == location;
+            });
+            // it has to exist
+            assert(key != parent.cend());
+            cost_ = key->second;
+            ccost_ += cost_;
+        }
         path_.push_back(location);
     }
 
@@ -51,12 +66,20 @@ public:
 
     bool operator!=(const Romania &other) const { return !(*this == other); }
 
+    constexpr double cost() const noexcept { return cost_; }
+
+    constexpr double ccost() const noexcept { return ccost_; }
+
 private:
     void setup();
 
 private:
     std::string current_state_;
     std::vector<std::string> path_;
+    // cost from most immediate parent
+    double cost_ = 0;
+    // cumulative cost
+    double ccost_ = 0;
 };
 
 
@@ -69,7 +92,7 @@ public:
     std::vector<std::string> actions(const Romania &state) const override;
     Romania successor(const Romania &state, const std::string &action) const override;
     bool goal(const Romania &state) const override { return state.whereami() == goal_; }
-    Romania initial_state() const override { return initial_; }
+    Romania initial_state() const override { return Romania(initial_); }
 private:
     std::string goal_;
     std::string initial_;
