@@ -4,25 +4,72 @@ project(aima)
 set(CMAKE_CXX_STANDARD 14)
 
 
-# defines the search shared library
+# include the aima::search library
 add_subdirectory(search)
 
-####################
-## Catch2 Test cases
-####################
-option(BUILD_TESTS "Create test targets for make" ON)
+# make 'utilities' a shared lib
+add_library(util SHARED ${CMAKE_SOURCE_DIR}/utilities/string_ops.cpp)
+
+
+# make 'dstruct' an interface library
+add_library(data_structure INTERFACE)
+#target_sources(data_structure INTERFACE ${CMAKE_SOURCE_DIR}/dstruct/priority_queue.h)
+target_include_directories(data_structure INTERFACE ${CMAKE_SOURCE_DIR}/dstruct)
+
+
+# make 'example' a shared library
+add_library(example SHARED ${CMAKE_SOURCE_DIR}/example/romania.cpp)
+target_include_directories(example
+        PRIVATE
+            ${CMAKE_SOURCE_DIR}/utilities
+        INTERFACE
+            ${CMAKE_SOURCE_DIR}/search/commons
+        PUBLIC
+            ${CMAKE_SOURCE_DIR}/example)
+target_link_libraries(example util search)
+
+
+#####################
+### Catch2 Test cases
+#####################
+option(BUILD_TESTS "Create test targets" ON)
 if (BUILD_TESTS)
+
+    ### setup testing playground
+
     enable_testing()
-    set(CATCH_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
     add_library(Catch INTERFACE)
-    target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
-    add_executable(testAima
+    target_include_directories(Catch INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/test)
+    ### end of: setup testing playground
+
+
+    ### setup util tests
+    add_executable(utilTest test/main-test.cpp test/utilities/test-util-string_ops.cpp)
+    target_link_libraries(utilTest Catch util)
+    target_include_directories(utilTest PRIVATE utilities test)
+    ### end of: setup util tests
+
+
+    ### setup search tests
+    add_executable(searchTest
             test/main-test.cpp
             test/search/commons/test-tree-search.cpp
-            test/utilities/test-util-string_ops.cpp
-            example/romania.cpp
-            utilities/string_ops.cpp
-            test/search/commons/test-graph-search.cpp test/search/commons/test-bfs.cpp)
-    target_include_directories(testAima PRIVATE search search/commons utilities example test)
-    add_test(NAME testAima COMMAND testAima)
+            test/search/commons/test-graph-search.cpp
+            test/search/commons/test-bfs.cpp
+            test/dstruct/test-priority_queue.cpp)
+
+    target_link_libraries(searchTest Catch example search)
+    target_include_directories(searchTest
+            PRIVATE
+                search
+                search/commons
+                utilities
+                search/uninformed_search
+                example
+                test
+    )
+    ### end of: setup search tests
+
+    add_test(NAME search_test COMMAND searchTest)
+    add_test(NAME util_test COMMAND utilTest)
 endif (BUILD_TESTS)
