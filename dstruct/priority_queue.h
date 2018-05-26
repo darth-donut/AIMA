@@ -101,7 +101,7 @@ public:
             ptrs_.pop_back();
             assert(index >= 0);
             // if child < parent
-            if (index == 0 || cmp_(*ptrs_[index], *ptrs_[index / 2])) {
+            if (index == 0 || cmp_(*ptrs_[index], *ptrs_[index > 1 ? (index - 1) / 2 : 0])) {
                 sieve_down(static_cast<typename MVector::size_type>(index));
             } else {
                 sieve_up(static_cast<typename MVector::size_type>(index));
@@ -133,9 +133,9 @@ private:
 
 template<typename T, typename Comparator>
 void aima::PriorityQueue<T, Comparator>::sieve_up(typename MVector::size_type n) {
-    // parent node is n/2
+    // parent node is (n - 1) / 2
     if (n > 0) {
-        auto parent = n / 2;
+        auto parent = n > 1 ? (n - 1) / 2 : 0;
         // if lhs is < rhs (if parent is smaller than child node)
         if (cmp_(*ptrs_[parent], *ptrs_[n])) {
             using std::swap;
@@ -148,24 +148,22 @@ void aima::PriorityQueue<T, Comparator>::sieve_up(typename MVector::size_type n)
 template<typename T, typename Comparator>
 void aima::PriorityQueue<T, Comparator>::sieve_down(typename MVector::size_type n) {
     // confirm that we're not out of bounds, and has at least one child (left node)
-    if (n < ptrs_.size() && n * 2 < ptrs_.size()) {
-        typename std::vector<T *>::size_type fav_child;
-        if ((fav_child = n * 2) < ptrs_.size()) {
-            //                                          left node   <   right node
-            if (fav_child + 1 < ptrs_.size() && cmp_(*ptrs_[n * 2], *ptrs_[n * 2 + 1]) ) {
-                // favour the right node (larger node)
-                ++fav_child;
-            }
-
-            // if parent < (best)child, swap them and sieve downwards recursively
-            if (cmp_(*ptrs_[n], *ptrs_[fav_child])) {
-                using std::swap;
-                swap(ptrs_[n], ptrs_[fav_child]);
-                sieve_down(fav_child);
-            }
+    typename MVector::size_type child = n * 2 + 1;
+    if (child < ptrs_.size()) {
+        //                                          left node   <   right node
+        if (child + 1 < ptrs_.size() && cmp_(*ptrs_[child], *ptrs_[child + 1]) ) {
+            // favour the right node (larger node)
+            ++child;
         }
-        // no child, nothing to compare
+
+        // if parent < (best)child, swap them and sieve downwards recursively
+        if (cmp_(*ptrs_[n], *ptrs_[child])) {
+            using std::swap;
+            swap(ptrs_[n], ptrs_[child]);
+            sieve_down(child);
+        }
     }
+    // no child, nothing to compare
 
 }
 
