@@ -17,14 +17,26 @@ namespace aima {
 class Map {
 public:
     Map() = default;
+
+    Map(const Map &other) = default;
+
+    Map &operator=(const Map &other) = default;
+
+    Map(Map &&other) = default;
+
+    Map &operator=(Map &&other) = default;
+
     Map(std::string name) : name_(std::move(name)) {}
+
     void add(const std::string &from, const std::string &to, double weight = .0, bool undirected = true) {
         map_[from].push_back({to, weight});
         if (undirected) {
             map_[to].push_back({from, weight});
         }
     }
+
     virtual ~Map() = default;
+
 protected:
     std::string name_;
     std::unordered_map<std::string, std::vector<std::pair<std::string, double>>> map_;
