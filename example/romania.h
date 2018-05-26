@@ -68,8 +68,11 @@ public:
 
     constexpr double cost() const noexcept { return cost_; }
 
+    constexpr void set_cost(double cost) noexcept { cost_ = cost; }
+
     constexpr double ccost() const noexcept { return ccost_; }
 
+    constexpr void set_ccost(double ccost) noexcept { ccost_ = ccost; }
 private:
     void setup();
 
