@@ -10,6 +10,7 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include <unordered_map>
 #include <algorithm>
 #include <iostream>
 #include <cassert>
@@ -31,6 +32,7 @@ public:
               current_state_(initial_state) {
 
         setup();
+        build_heuristics();
         path_.push_back(initial_state);
     };
 
@@ -73,8 +75,27 @@ public:
     constexpr double ccost() const noexcept { return ccost_; }
 
     constexpr void set_ccost(double ccost) noexcept { ccost_ = ccost; }
+
+    double goal_estimate(const std::string &goal) const {
+        if (current_state_ == goal) {
+            return 0;
+        }
+        assert(heuristics_.find(current_state_ + goal) != heuristics_.cend());
+        return heuristics_.at(current_state_ + goal);
+    }
+
+    auto remove_me_later() const {
+        std::vector<std::string> places;
+        places.reserve(map_.size());
+        std::transform(map_.cbegin(), map_.cend(), std::back_inserter(places), [](const auto &pair) {
+            return pair.first;
+        });
+        return places;
+    }
 private:
     void setup();
+    void build_heuristics();
+    void add_LB_estimate(const std::string &from, const std::string &to, double guess);
 
 private:
     std::string current_state_;
@@ -83,11 +104,13 @@ private:
     double cost_ = 0;
     // cumulative cost
     double ccost_ = 0;
+    std::unordered_map<std::string, double> heuristics_;
 };
 
 
 class RomaniaMap : public Problem<Romania, std::string> {
 public:
+    auto remove_me() const {return romania_.remove_me_later(); }
     RomaniaMap(std::string initial, std::string goal) :
             initial_(std::move(initial)),
             goal_(std::move(goal)),

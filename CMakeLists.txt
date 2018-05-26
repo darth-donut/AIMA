@@ -56,7 +56,10 @@ if (BUILD_TESTS)
             test/main-test.cpp
             test/search/commons/test-tree-search.cpp
             test/search/commons/test-graph-search.cpp
-            test/search/commons/test-bfs.cpp)
+            test/search/commons/test-bfs.cpp
+            test/search/uninformed_search/test-uniform_search.cpp
+            test/search/uninformed_search/test-greedy_best_first.cpp
+            test/search/uninformed_search/test-A_star_search.cpp)
 
     target_link_libraries(searchTest Catch example search)
     target_include_directories(searchTest
