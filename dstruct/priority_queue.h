@@ -16,7 +16,7 @@
 
 namespace aima {
 
-template<typename T, typename Comparator = std::less<T>>
+template<typename T, typename Comparator = std::less<>>
 class PriorityQueue {
 public:
     using const_iterator = typename std::unordered_set<T>::const_iterator;
@@ -77,7 +77,7 @@ public:
 
     void heapify() const {
         Comparator cmp_local = cmp_;
-        std::make_heap(ptrs_.begin(), ptrs_.end(), [cmp_local](const auto &a, const auto &b) {
+        std::make_heap(ptrs_.begin(), ptrs_.end(), [&cmp_local](const auto &a, const auto &b) {
             return(cmp_local(*a, *b));
         });
     }
@@ -126,7 +126,7 @@ void aima::PriorityQueue<T, Comparator>::sieve_down(typename MVector::size_type 
         if ((fav_child = n * 2) < ptrs_.size()) {
             //                                          left node   <   right node
             if (fav_child + 1 < ptrs_.size() && cmp_(*ptrs_[n * 2], *ptrs_[n * 2 + 1]) ) {
-                // favour the right node (larger ndoe)
+                // favour the right node (larger node)
                 ++fav_child;
             }
 
