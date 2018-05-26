@@ -75,12 +75,12 @@ public:
         return *ptrs_.front();
     }
 
-    void heapify() {
-        Comparator cmp_local = cmp_;
-        std::make_heap(ptrs_.begin(), ptrs_.end(), [&cmp_local](const auto &a, const auto &b) {
-            return(cmp_local(*a, *b));
-        });
-    }
+//    void heapify() {
+//        Comparator cmp_local = cmp_;
+//        std::make_heap(ptrs_.begin(), ptrs_.end(), [&cmp_local](const auto &a, const auto &b) {
+//            return(cmp_local(*a, *b));
+//        });
+//    }
 
     bool empty() const {
         assert(set_.empty() == ptrs_.empty());
@@ -89,15 +89,24 @@ public:
 
     void remove(const T& key) {
         if (set_.find(key) != set_.cend()) {
+            using std::swap;
             // there's only one of key in vector, stop as soon as we see it - use find instead of remove (which
             // runs throughout the vector (waste of iterations)
-            auto ptr = std::find_if(ptrs_.cbegin(), ptrs_.cend(), [&key](const auto &p) {
+            auto ptr = std::find_if(ptrs_.begin(), ptrs_.end(), [&key](const auto &p) {
                 return key == *p;
             });
+            auto index = std::distance(ptrs_.begin(), ptr);
             assert(ptr != ptrs_.cend());
-            ptrs_.erase(ptr, ptr + 1);
+            swap(*ptr, ptrs_.back());
+            ptrs_.pop_back();
+            assert(index >= 0);
+            // if child < parent
+            if (index == 0 || cmp_(*ptrs_[index], *ptrs_[index / 2])) {
+                sieve_down(static_cast<typename MVector::size_type>(index));
+            } else {
+                sieve_up(static_cast<typename MVector::size_type>(index));
+            }
             set_.erase(key);
-            heapify();
         }
     }
 

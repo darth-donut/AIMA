@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <stdexcept>
 
 #include "catch.hpp"
 #include "best_first.h"
@@ -23,7 +24,7 @@ TEST_CASE("Greedy best-first search works on the romanian map", "[US1]") {
                                   return s.goal_estimate("Sibiu");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == greediest_solution);
@@ -39,7 +40,7 @@ TEST_CASE("Greedy best-first search works on the romanian map", "[US1]") {
                                   return s.goal_estimate("Craiova");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == greediest_solution);
@@ -55,7 +56,7 @@ TEST_CASE("Greedy best-first search works on the romanian map", "[US1]") {
                                   return s.goal_estimate("Craiova");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == greediest_solution);
@@ -71,7 +72,7 @@ TEST_CASE("Greedy best-first search works on the romanian map", "[US1]") {
                                   return s.goal_estimate("Pitesti");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == greediest_solution);
@@ -87,7 +88,7 @@ TEST_CASE("Greedy best-first search works on the romanian map", "[US1]") {
                                   return s.goal_estimate("Bucharest");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == greediest_solution);
@@ -105,7 +106,7 @@ TEST_CASE("Greedy best-first search works on edge cases", "[US2]") {
                                   return s.goal_estimate("Bucharest");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -120,7 +121,7 @@ TEST_CASE("Greedy best-first search works on edge cases", "[US2]") {
                                   return s.goal_estimate("Sibiu");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -134,7 +135,7 @@ TEST_CASE("Greedy best-first search works on edge cases", "[US2]") {
                                   return s.goal_estimate("Sibiu");
                               },
                               [](Romania &node, const Romania &cost_copy) {
-                                  // nothing
+                                  throw std::runtime_error("Should not have happened");
                               });
         REQUIRE_FALSE(bool(res));
     }
