@@ -25,25 +25,25 @@ public:
     PriorityQueue(Comparator cmp = Comparator()) : cmp_(cmp) {}
 
     iterator find(const T &key) {
-        return map_.find(key);
+        return set_.find(key);
     }
 
     const_iterator find(const T &key) const {
-        return map_.find(key);
+        return set_.find(key);
     }
 
-    const_iterator cbegin() const { return map_.cbegin(); }
+    const_iterator cbegin() const { return set_.cbegin(); }
 
-    iterator begin() { return map_.begin(); }
+    iterator begin() { return set_.begin(); }
 
-    const_iterator cend() const { return map_.cend(); }
+    const_iterator cend() const { return set_.cend(); }
 
-    iterator end() { return map_.end(); }
+    iterator end() { return set_.end(); }
 
     void push(const T &key) {
-        map_.insert(key);
-        auto res = map_.find(key);
-        assert(res != map_.cend());
+        set_.insert(key);
+        auto res = set_.find(key);
+        assert(res != set_.cend());
         ptrs_.push_back(&(*res));
         sieve_up(ptrs_.size() - 1);
     }
@@ -54,28 +54,28 @@ public:
         swap(ptrs_.front(), ptrs_.back());
         ptrs_.pop_back();
         sieve_down();
-        map_.erase(*del);
+        set_.erase(*del);
     }
 
     const T &top() const {
         // would never EVER EVERRR happen!
-//        if (map_.find(*ptrs_.front()) == map_.cend()) {
+//        if (set_.find(*ptrs_.front()) == set_.cend()) {
 //            throw std::logic_error("Whoopsie dasies");
 //        }
-        assert(map_.find(*ptrs_.front()) != map_.cend());
+        assert(set_.find(*ptrs_.front()) != set_.cend());
         return *ptrs_.front();
     }
 
     const T &top() {
         // would never EVER EVERRR happen!
-//        if (map_.find(*ptrs_.front()) == map_.cend()) {
+//        if (set_.find(*ptrs_.front()) == set_.cend()) {
 //            throw std::logic_error("Whoopsie dasies");
 //        }
-        assert(map_.find(*ptrs_.front()) != map_.cend());
+        assert(set_.find(*ptrs_.front()) != set_.cend());
         return *ptrs_.front();
     }
 
-    void heapify() const {
+    void heapify() {
         Comparator cmp_local = cmp_;
         std::make_heap(ptrs_.begin(), ptrs_.end(), [&cmp_local](const auto &a, const auto &b) {
             return(cmp_local(*a, *b));
@@ -83,8 +83,26 @@ public:
     }
 
     bool empty() const {
-        assert(map_.empty() == ptrs_.empty());
-        return map_.empty();
+        assert(set_.empty() == ptrs_.empty());
+        return set_.empty();
+    }
+
+    void remove(const T& key) {
+        if (set_.find(key) != set_.cend()) {
+            // there's only one of key in vector, stop as soon as we see it - use find instead of remove (which
+            // runs throughout the vector (waste of iterations)
+            auto ptr = std::find_if(ptrs_.cbegin(), ptrs_.cend(), [&key](const auto &p) {
+                return key == *p;
+            });
+            assert(ptr != ptrs_.cend());
+            ptrs_.erase(ptr, ptr + 1);
+            set_.erase(key);
+            heapify();
+        }
+    }
+
+    constexpr typename std::unordered_set<T>::size_type size() const  {
+        return set_.size();
     }
 
 
@@ -92,7 +110,7 @@ public:
 private:
     // a vector of pointers that maps to an unordered set (hence the constness)
     using MVector = std::vector<const T *>;
-    std::unordered_set<T> map_;
+    std::unordered_set<T> set_;
     MVector ptrs_;
     Comparator cmp_;
 
