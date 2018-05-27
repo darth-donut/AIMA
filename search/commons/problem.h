@@ -8,6 +8,7 @@
 
 #include<vector>
 
+namespace aima {
 template<typename State, typename Action>
 class Problem {
 public:
@@ -40,4 +41,7 @@ public:
     virtual State initial_state() const = 0;
 };
 
+}       // end namespace aima
+
 #endif //AIMA_PROBLEM_H
+

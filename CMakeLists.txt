@@ -38,7 +38,7 @@ if (BUILD_TESTS)
 
     ### setup testing playground
 
-    enable_testing()
+    include(CTest)
     add_library(Catch INTERFACE)
     target_include_directories(Catch INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/test)
     ### end of: setup testing playground
@@ -54,12 +54,15 @@ if (BUILD_TESTS)
     ### setup search tests
     add_executable(searchTest
             test/main-test.cpp
-            test/search/commons/test-tree-search.cpp
-            test/search/commons/test-graph-search.cpp
-            test/search/commons/test-bfs.cpp
+            test/search/commons/test-tree_search.cpp
+            test/search/commons/test-graph_search.cpp
+            test/search/uninformed_search/test-breadth_first_search.cpp
             test/search/uninformed_search/test-uniform_search.cpp
-            test/search/uninformed_search/test-greedy_best_first.cpp
-            test/search/uninformed_search/test-A_star_search.cpp)
+            test/search/informed_search/test-greedy_best_first.cpp
+            test/search/informed_search/test-A_star_search.cpp
+            test/search/uninformed_search/test-depth_limited_search.cpp
+            test/search/uninformed_search/test-depth_first_search.cpp
+            test/search/uninformed_search/test-iterative_depth_first_search.cpp)
 
     target_link_libraries(searchTest Catch example search)
     target_include_directories(searchTest

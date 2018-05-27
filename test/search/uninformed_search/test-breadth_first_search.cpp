@@ -31,10 +31,10 @@ TEST_CASE("Test breadth first search 1", "[TBFS1]") {
         REQUIRE(res->path().back() == end);
     }
 
-    SECTION("BFS search works on the Romanian map, from Zerind to Neami(very long path)") {
+    SECTION("BFS search works on the Romanian map, from Zerind to Neamt(very long path)") {
         using namespace aima;
         std::string start = "Zerind";
-        std::string end = "Neami";
+        std::string end = "Neamt";
         RomaniaMap problem(start, end);
         auto res = bfs(problem);
         REQUIRE(bool(res));
