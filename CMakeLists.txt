@@ -38,7 +38,7 @@ if (BUILD_TESTS)
 
     ### setup testing playground
 
-    enable_testing()
+    include(CTest)
     add_library(Catch INTERFACE)
     target_include_directories(Catch INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/test)
     ### end of: setup testing playground
