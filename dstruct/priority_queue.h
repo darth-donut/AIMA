@@ -101,7 +101,7 @@ public:
             ptrs_.pop_back();
             assert(index >= 0);
             // if child < parent
-            if (index == 0 || cmp_(*ptrs_[index], *ptrs_[index > 1 ? (index - 1) / 2 : 0])) {
+            if (index == 0 || cmp_(*ptrs_[index], *ptrs_[(index - 1) / 2])) {
                 sieve_down(static_cast<typename MVector::size_type>(index));
             } else {
                 sieve_up(static_cast<typename MVector::size_type>(index));
@@ -135,7 +135,7 @@ template<typename T, typename Comparator>
 void aima::PriorityQueue<T, Comparator>::sieve_up(typename MVector::size_type n) {
     // parent node is (n - 1) / 2
     if (n > 0) {
-        auto parent = n > 1 ? (n - 1) / 2 : 0;
+        auto parent = (n - 1) / 2;
         // if lhs is < rhs (if parent is smaller than child node)
         if (cmp_(*ptrs_[parent], *ptrs_[n])) {
             using std::swap;
