@@ -33,7 +33,7 @@ aima::Romania::setup() {
     add("Urziceni", "Vaslui", 142);
     add("Hirsova", "Eforie", 86);
     add("Vaslui", "Iasi", 92);
-    add("Iasi", "Neami", 87);
+    add("Iasi", "Neamt", 87);
 }
 
 std::vector<std::string>
@@ -64,26 +64,26 @@ std::ostream
 
 void
 aima::Romania::build_heuristics() {
-    add_LB_estimate("Neami", "Iasi", 86.5);
-    add_LB_estimate("Neami", "Eforie", 504.5);
-    add_LB_estimate("Neami", "Lugoj", 909.5);
-    add_LB_estimate("Neami", "Oradea", 824.5);
-    add_LB_estimate("Neami", "Craiova", 644.5);
-    add_LB_estimate("Neami", "Arad", 813.5);
-    add_LB_estimate("Neami", "Sibiu", 673.5);
-    add_LB_estimate("Neami", "Zerind", 888.5);
-    add_LB_estimate("Neami", "Mehadia", 839.5);
-    add_LB_estimate("Neami", "Fagaras", 616.5);
-    add_LB_estimate("Neami", "Drobeta", 764.5);
-    add_LB_estimate("Neami", "Rimnicu Vilcea", 593.5);
-    add_LB_estimate("Neami", "Pitesti", 506.5);
-    add_LB_estimate("Neami", "Bucharest", 405.5);
-    add_LB_estimate("Neami", "Urziceni", 320.5);
-    add_LB_estimate("Neami", "Vaslui", 178.5);
-    add_LB_estimate("Neami", "Timisoara", 931.5);
-    add_LB_estimate("Neami", "Hirsova", 418.5);
-    add_LB_estimate("Neami", "Giurgiu", 495.5);
-    add_LB_estimate("Iasi", "Neami", 86.5);
+    add_LB_estimate("Neamt", "Iasi", 86.5);
+    add_LB_estimate("Neamt", "Eforie", 504.5);
+    add_LB_estimate("Neamt", "Lugoj", 909.5);
+    add_LB_estimate("Neamt", "Oradea", 824.5);
+    add_LB_estimate("Neamt", "Craiova", 644.5);
+    add_LB_estimate("Neamt", "Arad", 813.5);
+    add_LB_estimate("Neamt", "Sibiu", 673.5);
+    add_LB_estimate("Neamt", "Zerind", 888.5);
+    add_LB_estimate("Neamt", "Mehadia", 839.5);
+    add_LB_estimate("Neamt", "Fagaras", 616.5);
+    add_LB_estimate("Neamt", "Drobeta", 764.5);
+    add_LB_estimate("Neamt", "Rimnicu Vilcea", 593.5);
+    add_LB_estimate("Neamt", "Pitesti", 506.5);
+    add_LB_estimate("Neamt", "Bucharest", 405.5);
+    add_LB_estimate("Neamt", "Urziceni", 320.5);
+    add_LB_estimate("Neamt", "Vaslui", 178.5);
+    add_LB_estimate("Neamt", "Timisoara", 931.5);
+    add_LB_estimate("Neamt", "Hirsova", 418.5);
+    add_LB_estimate("Neamt", "Giurgiu", 495.5);
+    add_LB_estimate("Iasi", "Neamt", 86.5);
     add_LB_estimate("Iasi", "Eforie", 417.5);
     add_LB_estimate("Iasi", "Lugoj", 822.5);
     add_LB_estimate("Iasi", "Oradea", 737.5);
@@ -102,7 +102,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Iasi", "Timisoara", 844.5);
     add_LB_estimate("Iasi", "Hirsova", 331.5);
     add_LB_estimate("Iasi", "Giurgiu", 408.5);
-    add_LB_estimate("Eforie", "Neami", 504.5);
+    add_LB_estimate("Eforie", "Neamt", 504.5);
     add_LB_estimate("Eforie", "Iasi", 417.5);
     add_LB_estimate("Eforie", "Lugoj", 772.5);
     add_LB_estimate("Eforie", "Oradea", 687.5);
@@ -121,7 +121,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Eforie", "Timisoara", 794.5);
     add_LB_estimate("Eforie", "Hirsova", 85.5);
     add_LB_estimate("Eforie", "Giurgiu", 358.5);
-    add_LB_estimate("Lugoj", "Neami", 909.5);
+    add_LB_estimate("Lugoj", "Neamt", 909.5);
     add_LB_estimate("Lugoj", "Iasi", 822.5);
     add_LB_estimate("Lugoj", "Eforie", 772.5);
     add_LB_estimate("Lugoj", "Oradea", 374.5);
@@ -140,7 +140,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Lugoj", "Timisoara", 110.5);
     add_LB_estimate("Lugoj", "Hirsova", 686.5);
     add_LB_estimate("Lugoj", "Giurgiu", 593.5);
-    add_LB_estimate("Oradea", "Neami", 824.5);
+    add_LB_estimate("Oradea", "Neamt", 824.5);
     add_LB_estimate("Oradea", "Iasi", 737.5);
     add_LB_estimate("Oradea", "Eforie", 687.5);
     add_LB_estimate("Oradea", "Lugoj", 374.5);
@@ -159,7 +159,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Oradea", "Timisoara", 263.5);
     add_LB_estimate("Oradea", "Hirsova", 601.5);
     add_LB_estimate("Oradea", "Giurgiu", 508.5);
-    add_LB_estimate("Craiova", "Neami", 644.5);
+    add_LB_estimate("Craiova", "Neamt", 644.5);
     add_LB_estimate("Craiova", "Iasi", 557.5);
     add_LB_estimate("Craiova", "Eforie", 507.5);
     add_LB_estimate("Craiova", "Lugoj", 264.5);
@@ -178,7 +178,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Craiova", "Timisoara", 375.5);
     add_LB_estimate("Craiova", "Hirsova", 421.5);
     add_LB_estimate("Craiova", "Giurgiu", 328.5);
-    add_LB_estimate("Arad", "Neami", 813.5);
+    add_LB_estimate("Arad", "Neamt", 813.5);
     add_LB_estimate("Arad", "Iasi", 726.5);
     add_LB_estimate("Arad", "Eforie", 676.5);
     add_LB_estimate("Arad", "Lugoj", 228.5);
@@ -197,7 +197,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Arad", "Timisoara", 117.5);
     add_LB_estimate("Arad", "Hirsova", 590.5);
     add_LB_estimate("Arad", "Giurgiu", 497.5);
-    add_LB_estimate("Sibiu", "Neami", 673.5);
+    add_LB_estimate("Sibiu", "Neamt", 673.5);
     add_LB_estimate("Sibiu", "Iasi", 586.5);
     add_LB_estimate("Sibiu", "Eforie", 536.5);
     add_LB_estimate("Sibiu", "Lugoj", 368.5);
@@ -216,7 +216,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Sibiu", "Timisoara", 257.5);
     add_LB_estimate("Sibiu", "Hirsova", 450.5);
     add_LB_estimate("Sibiu", "Giurgiu", 357.5);
-    add_LB_estimate("Zerind", "Neami", 888.5);
+    add_LB_estimate("Zerind", "Neamt", 888.5);
     add_LB_estimate("Zerind", "Iasi", 801.5);
     add_LB_estimate("Zerind", "Eforie", 751.5);
     add_LB_estimate("Zerind", "Lugoj", 303.5);
@@ -235,7 +235,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Zerind", "Timisoara", 192.5);
     add_LB_estimate("Zerind", "Hirsova", 665.5);
     add_LB_estimate("Zerind", "Giurgiu", 572.5);
-    add_LB_estimate("Mehadia", "Neami", 839.5);
+    add_LB_estimate("Mehadia", "Neamt", 839.5);
     add_LB_estimate("Mehadia", "Iasi", 752.5);
     add_LB_estimate("Mehadia", "Eforie", 702.5);
     add_LB_estimate("Mehadia", "Lugoj", 69.5);
@@ -254,7 +254,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Mehadia", "Timisoara", 180.5);
     add_LB_estimate("Mehadia", "Hirsova", 616.5);
     add_LB_estimate("Mehadia", "Giurgiu", 523.5);
-    add_LB_estimate("Fagaras", "Neami", 616.5);
+    add_LB_estimate("Fagaras", "Neamt", 616.5);
     add_LB_estimate("Fagaras", "Iasi", 529.5);
     add_LB_estimate("Fagaras", "Eforie", 479.5);
     add_LB_estimate("Fagaras", "Lugoj", 467.5);
@@ -273,7 +273,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Fagaras", "Timisoara", 356.5);
     add_LB_estimate("Fagaras", "Hirsova", 393.5);
     add_LB_estimate("Fagaras", "Giurgiu", 300.5);
-    add_LB_estimate("Drobeta", "Neami", 764.5);
+    add_LB_estimate("Drobeta", "Neamt", 764.5);
     add_LB_estimate("Drobeta", "Iasi", 677.5);
     add_LB_estimate("Drobeta", "Eforie", 627.5);
     add_LB_estimate("Drobeta", "Lugoj", 144.5);
@@ -292,7 +292,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Drobeta", "Timisoara", 255.5);
     add_LB_estimate("Drobeta", "Hirsova", 541.5);
     add_LB_estimate("Drobeta", "Giurgiu", 448.5);
-    add_LB_estimate("Rimnicu Vilcea", "Neami", 593.5);
+    add_LB_estimate("Rimnicu Vilcea", "Neamt", 593.5);
     add_LB_estimate("Rimnicu Vilcea", "Iasi", 506.5);
     add_LB_estimate("Rimnicu Vilcea", "Eforie", 456.5);
     add_LB_estimate("Rimnicu Vilcea", "Lugoj", 410.5);
@@ -311,7 +311,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Rimnicu Vilcea", "Timisoara", 337.5);
     add_LB_estimate("Rimnicu Vilcea", "Hirsova", 370.5);
     add_LB_estimate("Rimnicu Vilcea", "Giurgiu", 277.5);
-    add_LB_estimate("Pitesti", "Neami", 506.5);
+    add_LB_estimate("Pitesti", "Neamt", 506.5);
     add_LB_estimate("Pitesti", "Iasi", 419.5);
     add_LB_estimate("Pitesti", "Eforie", 369.5);
     add_LB_estimate("Pitesti", "Lugoj", 402.5);
@@ -330,7 +330,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Pitesti", "Timisoara", 424.5);
     add_LB_estimate("Pitesti", "Hirsova", 283.5);
     add_LB_estimate("Pitesti", "Giurgiu", 190.5);
-    add_LB_estimate("Bucharest", "Neami", 405.5);
+    add_LB_estimate("Bucharest", "Neamt", 405.5);
     add_LB_estimate("Bucharest", "Iasi", 318.5);
     add_LB_estimate("Bucharest", "Eforie", 268.5);
     add_LB_estimate("Bucharest", "Lugoj", 503.5);
@@ -349,7 +349,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Bucharest", "Timisoara", 525.5);
     add_LB_estimate("Bucharest", "Hirsova", 182.5);
     add_LB_estimate("Bucharest", "Giurgiu", 89.5);
-    add_LB_estimate("Urziceni", "Neami", 320.5);
+    add_LB_estimate("Urziceni", "Neamt", 320.5);
     add_LB_estimate("Urziceni", "Iasi", 233.5);
     add_LB_estimate("Urziceni", "Eforie", 183.5);
     add_LB_estimate("Urziceni", "Lugoj", 588.5);
@@ -368,7 +368,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Urziceni", "Timisoara", 610.5);
     add_LB_estimate("Urziceni", "Hirsova", 97.5);
     add_LB_estimate("Urziceni", "Giurgiu", 174.5);
-    add_LB_estimate("Vaslui", "Neami", 178.5);
+    add_LB_estimate("Vaslui", "Neamt", 178.5);
     add_LB_estimate("Vaslui", "Iasi", 91.5);
     add_LB_estimate("Vaslui", "Eforie", 325.5);
     add_LB_estimate("Vaslui", "Lugoj", 730.5);
@@ -387,7 +387,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Vaslui", "Timisoara", 752.5);
     add_LB_estimate("Vaslui", "Hirsova", 239.5);
     add_LB_estimate("Vaslui", "Giurgiu", 316.5);
-    add_LB_estimate("Timisoara", "Neami", 931.5);
+    add_LB_estimate("Timisoara", "Neamt", 931.5);
     add_LB_estimate("Timisoara", "Iasi", 844.5);
     add_LB_estimate("Timisoara", "Eforie", 794.5);
     add_LB_estimate("Timisoara", "Lugoj", 110.5);
@@ -406,7 +406,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Timisoara", "Vaslui", 752.5);
     add_LB_estimate("Timisoara", "Hirsova", 708.5);
     add_LB_estimate("Timisoara", "Giurgiu", 615.5);
-    add_LB_estimate("Hirsova", "Neami", 418.5);
+    add_LB_estimate("Hirsova", "Neamt", 418.5);
     add_LB_estimate("Hirsova", "Iasi", 331.5);
     add_LB_estimate("Hirsova", "Eforie", 85.5);
     add_LB_estimate("Hirsova", "Lugoj", 686.5);
@@ -425,7 +425,7 @@ aima::Romania::build_heuristics() {
     add_LB_estimate("Hirsova", "Vaslui", 239.5);
     add_LB_estimate("Hirsova", "Timisoara", 708.5);
     add_LB_estimate("Hirsova", "Giurgiu", 272.5);
-    add_LB_estimate("Giurgiu", "Neami", 495.5);
+    add_LB_estimate("Giurgiu", "Neamt", 495.5);
     add_LB_estimate("Giurgiu", "Iasi", 408.5);
     add_LB_estimate("Giurgiu", "Eforie", 358.5);
     add_LB_estimate("Giurgiu", "Lugoj", 593.5);
