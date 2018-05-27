@@ -34,10 +34,10 @@ TEST_CASE("Test graph search 1", "[TGS1]") {
         REQUIRE(res->path().back() == end);
     }
 
-    SECTION("Graph search works on the Romanian map, from Zerind to Neami(very long path)") {
+    SECTION("Graph search works on the Romanian map, from Zerind to Neamt(very long path)") {
         using namespace aima;
         std::string start = "Zerind";
-        std::string end = "Neami";
+        std::string end = "Neamt";
         RomaniaMap problem(start, end);
         auto res = graph_search(problem);
         REQUIRE(bool(res));
