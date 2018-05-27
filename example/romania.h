@@ -68,13 +68,13 @@ public:
 
     bool operator!=(const Romania &other) const { return !(*this == other); }
 
-    constexpr double cost() const noexcept { return cost_; }
+    double cost() const noexcept { return cost_; }
 
-    constexpr void set_cost(double cost) noexcept { cost_ = cost; }
+    void set_cost(double cost) noexcept { cost_ = cost; }
 
-    constexpr double ccost() const noexcept { return ccost_; }
+    double ccost() const noexcept { return ccost_; }
 
-    constexpr void set_ccost(double ccost) noexcept { ccost_ = ccost; }
+    void set_ccost(double ccost) noexcept { ccost_ = ccost; }
 
     double goal_estimate(const std::string &goal) const {
         if (current_state_ == goal) {
