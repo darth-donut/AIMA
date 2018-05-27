@@ -34,9 +34,8 @@ TEST_CASE("Priority queue works on numerical data", "[TPQ1]") {
         flatten.reserve(iterations);
 
         while (!queue.empty()) {
-            auto tmp = queue.top();
+            flatten.push_back(queue.top());
             queue.pop();
-            flatten.push_back(tmp);
         }
 
         REQUIRE(std::is_heap(flatten.cbegin(), flatten.cend()));
@@ -63,9 +62,8 @@ TEST_CASE("Priority queue works on numerical data", "[TPQ1]") {
         flatten.reserve(iterations);
 
         while (!queue.empty()) {
-            auto tmp = queue.top();
+            flatten.push_back(queue.top());
             queue.pop();
-            flatten.push_back(tmp);
         }
 
         REQUIRE(std::is_heap(flatten.cbegin(), flatten.cend(), cmp));
@@ -102,9 +100,8 @@ TEST_CASE("Priority queue works on numerical data", "[TPQ1]") {
         flatten.reserve(iterations);
 
         while (!queue.empty()) {
-            auto tmp = queue.top();
+            flatten.push_back(queue.top());
             queue.pop();
-            flatten.push_back(tmp);
         }
 
         REQUIRE(std::is_heap(flatten.cbegin(), flatten.cend(), cmp));
@@ -140,9 +137,8 @@ TEST_CASE("Priority queue works on numerical data", "[TPQ1]") {
         flatten.reserve(iterations);
 
         while (!queue.empty()) {
-            auto tmp = queue.top();
+            flatten.push_back(queue.top());
             queue.pop();
-            flatten.push_back(tmp);
         }
 
         REQUIRE(std::is_heap(flatten.cbegin(), flatten.cend()));
