@@ -42,11 +42,11 @@ public:
 
     virtual ~Problem() = default;
 
-    Problem(Problem &&) noexcept = default;
-    Problem (const Problem &) = default;
+    Problem(Problem &&) noexcept = delete;
+    Problem (const Problem &) = delete;
 
-    Problem &operator=(Problem &&) noexcept = default;
-    Problem &operator=(const Problem &) = default;
+    Problem &operator=(Problem &&) noexcept = delete;
+    Problem &operator=(const Problem &) = delete;
 
     Problem() = default;
 
