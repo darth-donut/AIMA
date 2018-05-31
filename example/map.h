@@ -22,9 +22,9 @@ public:
 
     Map &operator=(const Map &other) = default;
 
-    Map(Map &&other) = default;
+    Map(Map &&other) noexcept = default;
 
-    Map &operator=(Map &&other) = default;
+    Map &operator=(Map &&other) noexcept = default;
 
     Map(std::string name) : name_(std::move(name)) {}
 

@@ -39,6 +39,17 @@ public:
     /// \return state
     ///         A brand new initial state object
     virtual State initial_state() const = 0;
+
+    virtual ~Problem() = default;
+
+    Problem(Problem &&) noexcept = default;
+    Problem (const Problem &) = default;
+
+    Problem &operator=(Problem &&) noexcept = default;
+    Problem &operator=(const Problem &) = default;
+
+    Problem() = default;
+
 };
 
 }       // end namespace aima
