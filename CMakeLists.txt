@@ -62,7 +62,8 @@ if (BUILD_TESTS)
             test/search/informed_search/test-A_star_search.cpp
             test/search/uninformed_search/test-depth_limited_search.cpp
             test/search/uninformed_search/test-depth_first_search.cpp
-            test/search/uninformed_search/test-iterative_depth_first_search.cpp)
+            test/search/uninformed_search/test-iterative_depth_first_search.cpp
+            test/search/informed_search/test-recursive_best_first_search.cpp)
 
     target_link_libraries(searchTest Catch example search)
     target_include_directories(searchTest
