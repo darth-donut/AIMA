@@ -84,14 +84,6 @@ public:
         return heuristics_.at(current_state_ + goal);
     }
 
-    auto remove_me_later() const {
-        std::vector<std::string> places;
-        places.reserve(map_.size());
-        std::transform(map_.cbegin(), map_.cend(), std::back_inserter(places), [](const auto &pair) {
-            return pair.first;
-        });
-        return places;
-    }
 private:
     void setup();
     void build_heuristics();
@@ -110,7 +102,6 @@ private:
 
 class RomaniaMap : public Problem<Romania, std::string> {
 public:
-    auto remove_me() const {return romania_.remove_me_later(); }
     RomaniaMap(std::string initial, std::string goal) :
             initial_(std::move(initial)),
             goal_(std::move(goal)),

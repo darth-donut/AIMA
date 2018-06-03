@@ -9,10 +9,17 @@
 
 namespace aima {
 
+struct nullopt_t {
+    // empty class
+};
+
+
 template<typename T>
 class optional {
 public:
     optional() = default;
+
+    optional(nullopt_t) {}
 
     optional(const T &obj) : obj_(obj), filled_(true) {}
 
@@ -40,6 +47,10 @@ private:
     T obj_;
     bool filled_ = false;
 };
+
+
+// CONST
+constexpr nullopt_t nullopt{};
 
 }       // end namespace aima
 

@@ -21,9 +21,6 @@ TEST_CASE("Uniform search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -37,9 +34,6 @@ TEST_CASE("Uniform search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -53,9 +47,6 @@ TEST_CASE("Uniform search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -69,9 +60,6 @@ TEST_CASE("Uniform search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -85,9 +73,6 @@ TEST_CASE("Uniform search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -103,9 +88,6 @@ TEST_CASE("Uniform search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -118,9 +100,6 @@ TEST_CASE("Uniform search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -132,9 +111,6 @@ TEST_CASE("Uniform search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE_FALSE(bool(res));
     }

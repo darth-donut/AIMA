@@ -74,14 +74,14 @@ namespace aima {
 /// \param cost_func cost function
 /// \param cost_update cost update function
 /// \return goal state if present, otherwise an empty optional object
-template<typename State, typename Action, typename CostUpdate, typename CostFunc>
-optional<State> best_first(const Problem<State, Action> &problem, CostFunc cost_func, CostUpdate cost_update);
+template<typename State, typename Action, typename CostFunc>
+optional<State> best_first(const Problem<State, Action> &problem, CostFunc cost_func);
 
 }       // end namespace aima
 
-template<typename State, typename Action, typename CostUpdate, typename CostFunc>
+template<typename State, typename Action, typename CostFunc>
 aima::optional<State> aima::best_first(const Problem<State, Action> &problem,
-                                       CostFunc cost_func, CostUpdate cost_update) {
+                                       CostFunc cost_func) {
     // LEGACY:
 //     state, cost from start node - g(n)
 //    using SPair = std::pair<State, double>;

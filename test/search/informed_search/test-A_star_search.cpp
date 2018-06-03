@@ -23,9 +23,6 @@ TEST_CASE("A* search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Sibiu");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Sibiu"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -39,9 +36,6 @@ TEST_CASE("A* search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Craiova");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Craiova"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -55,9 +49,6 @@ TEST_CASE("A* search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Craiova");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Craiova"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -71,9 +62,6 @@ TEST_CASE("A* search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Pitesti");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Pitesti"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -87,9 +75,6 @@ TEST_CASE("A* search works on the romanian map", "[US1]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Bucharest");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Bucharest"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == shortest_solution);
@@ -105,9 +90,6 @@ TEST_CASE("A* search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Bucharest");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Bucharest"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -120,9 +102,6 @@ TEST_CASE("A* search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost() + s.goal_estimate("Sibiu");
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost() + cost_copy.goal_estimate("Sibiu"));
                               });
         REQUIRE(bool(res));
         REQUIRE(res->path() == solution);
@@ -134,9 +113,6 @@ TEST_CASE("A* search works on edge cases", "[US2]") {
         auto res = best_first(problem,
                               [](const Romania &s) {
                                   return s.ccost();
-                              },
-                              [](Romania &node, const Romania &cost_copy) {
-                                  node.set_ccost(cost_copy.ccost());
                               });
         REQUIRE_FALSE(bool(res));
     }
