@@ -19,7 +19,8 @@ target_include_directories(data_structure INTERFACE ${CMAKE_SOURCE_DIR}/dstruct)
 
 
 # make 'example' a shared library
-add_library(example SHARED ${CMAKE_SOURCE_DIR}/example/romania.cpp)
+add_library(example SHARED example/romania.cpp
+                           example/n_queens.cpp)
 target_include_directories(example
         PRIVATE
             ${CMAKE_SOURCE_DIR}/utilities
@@ -90,10 +91,21 @@ if (BUILD_TESTS)
     )
     ### end of: setup data structure tests
 
+    ### setup example tests
+    add_executable(exampleTest
+            test/main-test.cpp
+            test/example/test-n_queens.cpp)
+    target_link_libraries(exampleTest Catch example)
+    target_include_directories(exampleTest
+                PRIVATE
+                    example
+            )
+    ### end of: setup example tests
 
     # manually add all tests here
     add_test(NAME search_test COMMAND searchTest)
     add_test(NAME util_test COMMAND utilTest)
     add_test(NAME data_structure_test COMMAND dataStructureTest)
+    add_test(NAME example_test COMMAND exampleTest)
 
 endif (BUILD_TESTS)
