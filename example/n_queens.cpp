@@ -44,3 +44,54 @@ aima::NQueens::to_string() const {
     buffer.pop_back();
     return buffer;
 }
+
+bool
+aima::NQueens::is_valid() const {
+    if (size() > size_) {
+        // there's no such valid configuration where
+        // there's more queens then #file or #rank
+        return false;
+    }
+    for (const auto &coord: occupied_) {
+        for (size_type i= 1; i != size_; ++i) {
+            // rank check
+            if (coord.second + i < size_) {
+                if (occupied_.find({coord.first, coord.second + i}) != occupied_.cend()) return false;
+            }
+            if (coord.second >= i) {
+                if (occupied_.find({coord.first, coord.second - i}) != occupied_.cend()) return false;
+            }
+
+            // file check
+            if (coord.first + i < size_) {
+                if (occupied_.find({coord.first + i, coord.second}) != occupied_.cend()) return false;
+            }
+            if (coord.first >= i) {
+                if (occupied_.find({coord.first - i, coord.second}) != occupied_.cend()) return false;
+            }
+
+            // south west
+            if (coord.second + i < size_ && coord.first >= i) {
+                if (occupied_.find({coord.first - i, coord.second + i}) != occupied_.cend()) return false;
+            }
+
+            // north east
+            if (coord.second >= i && coord.first + i < size_) {
+                if (occupied_.find({coord.first + i, coord.second - i}) != occupied_.cend()) return false;
+            }
+
+            // north west
+            if (coord.second >= i && coord.first >= i) {
+                if (occupied_.find({coord.first - i, coord.second - i}) != occupied_.cend()) return false;
+            }
+
+            // south east
+            if (coord.second + i < size_ && coord.first + i < size_) {
+                if (occupied_.find({coord.first + i, coord.second + i}) != occupied_.cend()) return false;
+            }
+        }
+    }
+
+    return true;
+}
+
