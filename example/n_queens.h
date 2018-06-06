@@ -82,7 +82,11 @@ public:
 
     /// returns the number of queens present on the current board
     /// \return number of queens present on the board
-    size_type size() const { return occupied_.size(); }
+    size_type queens() const { return occupied_.size(); }
+
+    /// returns the board size
+    /// \return n, where the board size is n by n
+    size_type size() const { return size_; }
 
     /// returns true if the current board is empty
     /// \return true if the current board is empty, i.e. this->size() == 0

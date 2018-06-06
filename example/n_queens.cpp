@@ -47,7 +47,7 @@ aima::NQueens::to_string() const {
 
 bool
 aima::NQueens::is_valid() const {
-    if (size() > size_) {
+    if (queens() > size_) {
         // there's no such valid configuration where
         // there's more queens then #file or #rank
         return false;
