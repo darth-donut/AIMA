@@ -85,6 +85,17 @@ TEST_CASE("NQueens correctly validates a board when no queens are attacking each
         REQUIRE(nqueens.is_valid());
     }
 
+    SECTION("Fully filled board is valid when no queens are attacking each other") {
+        REQUIRE(nqueens.place(0, 0));
+        REQUIRE(nqueens.place(1, 2));
+        REQUIRE(nqueens.place(2, 4));
+        REQUIRE(nqueens.place(3, 6));
+        REQUIRE(nqueens.place(4, 1));
+        REQUIRE(nqueens.place(5, 3));
+        REQUIRE(nqueens.place(6, 5));
+        REQUIRE(nqueens.place(7, 7));
+        REQUIRE(nqueens.is_valid());
+    }
 }
 
 TEST_CASE("NQueens correctly validates a board when at least one queen is attacking another", "[NQBVN]") {
@@ -102,6 +113,18 @@ TEST_CASE("NQueens correctly validates a board when at least one queen is attack
         REQUIRE(nqueens.is_valid());
 
         REQUIRE(nqueens.place(2, 1));
+        REQUIRE_FALSE(nqueens.is_valid());
+    }
+
+    SECTION("Fully filled board is invalid when at least one queen is attacking another") {
+        REQUIRE(nqueens.place(0, 0));
+        REQUIRE(nqueens.place(1, 1));
+        REQUIRE(nqueens.place(2, 4));
+        REQUIRE(nqueens.place(3, 6));
+        REQUIRE(nqueens.place(4, 1));
+        REQUIRE(nqueens.place(5, 3));
+        REQUIRE(nqueens.place(6, 5));
+        REQUIRE(nqueens.place(7, 7));
         REQUIRE_FALSE(nqueens.is_valid());
     }
 }
