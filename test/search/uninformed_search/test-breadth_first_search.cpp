@@ -6,6 +6,8 @@
 
 #include "romania.h"
 #include "bfs.h"
+#include "n_queens.h"
+
 #include "catch.hpp"
 
 
@@ -53,3 +55,14 @@ TEST_CASE("Test breadth first search 1", "[TBFS1]") {
         REQUIRE(res->path().back() == end);
     }
 }
+
+TEST_CASE("Test breadth first search 2", "[TBFS2]") {
+    SECTION("BFS works on the 4-Queens problem") {
+        using namespace aima;
+        NQueensProblem nqueens{4};
+        auto res = bfs(nqueens);
+        REQUIRE(bool(res));
+        REQUIRE(res->is_valid());
+    }
+}
+

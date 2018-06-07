@@ -4,6 +4,7 @@
 //
 
 #include <string>
+#include <vector>
 
 #include "n_queens.h"
 
@@ -93,5 +94,25 @@ aima::NQueens::is_valid() const {
     }
 
     return true;
+}
+
+std::vector<aima::NQueens::NQueenCoord>
+aima::NQueensProblem::actions(const aima::NQueens &state) const {
+    std::vector<NQueens::NQueenCoord> possible_actions;
+    std::unordered_set<aima::NQueens::size_type> skip_ranks;
+
+    for (size_type file = 0; file != size_; ++file) {
+        for (size_type rank = 0; rank != size_; ++rank) {
+            if (skip_ranks.find(rank) != skip_ranks.cend()) continue;
+            if (!state[{file, rank}]) {
+                possible_actions.emplace_back(file, rank);
+            } else {
+                // the next time we iterate into another file, just skip this
+                // rank entirely because we already know that it's filled
+                skip_ranks.insert(rank);
+            }
+        }
+    }
+    return possible_actions;
 }
 
