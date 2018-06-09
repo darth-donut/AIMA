@@ -5,7 +5,6 @@
 
 #include <iostream>
 
-#include "tree_search.h"
 
 int
 main() {
