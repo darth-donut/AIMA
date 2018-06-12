@@ -6,21 +6,21 @@
 #ifndef AIMA_IDS_H
 #define AIMA_IDS_H
 
-#include "optional.h"
+#include <optional>
 #include "problem.h"
 #include "dfs.h"
 
 namespace aima {
 
 template<typename State, typename Action>
-optional<State> ids(const Problem<State, Action> &problem);
+std::optional<State> ids(const Problem<State, Action> &problem);
 
 
 }       // end namespace aima
 
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 aima::ids(const Problem<State, Action> &problem) {
     // assumes that there's a solution in the state space, otherwise, the loop will run indefinitely
     // i.e. it is complete if there's a solution

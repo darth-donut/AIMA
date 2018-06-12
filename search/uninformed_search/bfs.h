@@ -8,9 +8,9 @@
 
 #include <queue>
 #include <unordered_set>
+#include <optional>
 
 #include "problem.h"
-#include "optional.h"
 
 namespace aima {
 
@@ -26,13 +26,13 @@ namespace aima {
 /// \tparam Action action type
 /// \param problem problem definition
 /// \return goal state if present, otherwise an empty optional object
-template<typename State, typename Action> optional<State> bfs(const Problem<State, Action> &problem);
+template<typename State, typename Action> std::optional<State> bfs(const Problem<State, Action> &problem);
 
 
 }   // end namespace aima
 
 template<typename State, typename Action>
-aima::optional<State> aima::bfs(const Problem<State, Action> &problem) {
+std::optional<State> aima::bfs(const Problem<State, Action> &problem) {
     std::queue<State> frontier;
     std::unordered_set<State> explored;
 

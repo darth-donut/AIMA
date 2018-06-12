@@ -10,16 +10,16 @@
 #include <utility>
 
 #include "problem.h"
-#include "optional.h"
+#include <optional>
 
 namespace aima {
 
 
 template<typename State, typename Action>
-optional<State> depth_limited_search(const Problem<State, Action> &problem, double depth);
+std::optional<State> depth_limited_search(const Problem<State, Action> &problem, double depth);
 
 template<typename State, typename Action>
-optional<State> dfs(const Problem<State, Action> &problem);
+std::optional<State> dfs(const Problem<State, Action> &problem);
 
 }   // end namespace aima
 
@@ -27,7 +27,7 @@ optional<State> dfs(const Problem<State, Action> &problem);
 namespace {
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 recursive_depth_first_search(const aima::Problem<State, Action> &problem, const State &root, double current_depth,
                              double max_depth) {
 
@@ -56,13 +56,13 @@ recursive_depth_first_search(const aima::Problem<State, Action> &problem, const 
 
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 aima::depth_limited_search(const Problem<State, Action> &problem, double depth) {
     return recursive_depth_first_search(problem, problem.initial_state(), 0, depth);
 };
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 aima::dfs(const aima::Problem<State, Action> &problem) {
     return depth_limited_search(problem, std::numeric_limits<double>::infinity());
 };

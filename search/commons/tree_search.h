@@ -8,13 +8,13 @@
 
 #include <stack>
 
-#include "optional.h"
+#include <optional>
 #include "problem.h"
 
 namespace aima {
 
 template<typename State, typename Action>
-optional<State>
+std::optional<State>
 tree_search(const Problem<State, Action> &problem);
 
 }   // end namespace aima
@@ -22,7 +22,7 @@ tree_search(const Problem<State, Action> &problem);
 
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 aima::tree_search(const Problem<State, Action> &problem) {
     // initial state inserted into frontier immediately
     std::stack<State> frontier;

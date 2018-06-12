@@ -10,13 +10,13 @@
 #include <unordered_set>
 
 #include "problem.h"
-#include "optional.h"
+#include <optional>
 
 namespace aima {
 
 
 template<typename State, typename Action>
-optional<State> graph_search(const Problem<State, Action> &problem);
+std::optional<State> graph_search(const Problem<State, Action> &problem);
 
 
 }   // end namespace aima
@@ -25,7 +25,7 @@ optional<State> graph_search(const Problem<State, Action> &problem);
 
 
 template<typename State, typename Action>
-aima::optional<State>
+std::optional<State>
 aima::graph_search(const Problem<State, Action> &problem) {
     std::unordered_set<State> frontier;
     std::unordered_set<State> explored;

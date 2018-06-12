@@ -8,7 +8,7 @@
 
 
 
-#include "optional.h"
+#include <optional>
 #include "problem.h"
 #include "priority_queue.h"
 
@@ -75,12 +75,12 @@ namespace aima {
 /// \param cost_update cost update function
 /// \return goal state if present, otherwise an empty optional object
 template<typename State, typename Action, typename CostFunc>
-optional<State> best_first(const Problem<State, Action> &problem, CostFunc cost_func);
+std::optional<State> best_first(const Problem<State, Action> &problem, CostFunc cost_func);
 
 }       // end namespace aima
 
 template<typename State, typename Action, typename CostFunc>
-aima::optional<State> aima::best_first(const Problem<State, Action> &problem,
+std::optional<State> aima::best_first(const Problem<State, Action> &problem,
                                        CostFunc cost_func) {
     // LEGACY:
 //     state, cost from start node - g(n)

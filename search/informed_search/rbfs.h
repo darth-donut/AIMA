@@ -10,9 +10,9 @@
 #include <limits>
 #include <queue>
 #include <functional>
+#include <optional>
 
 #include "problem.h"
-#include "optional.h"
 
 namespace aima {
 
@@ -26,7 +26,7 @@ namespace aima {
 /// \param update_func
 /// \return
 template<typename State, typename Action, typename CostFunc, typename UpdateFunc>
-optional<State> rbfs(const Problem<State, Action> &problem, CostFunc cost_func, UpdateFunc update_func);
+std::optional<State> rbfs(const Problem<State, Action> &problem, CostFunc cost_func, UpdateFunc update_func);
 
 }        // end namespace aima
 
@@ -34,14 +34,14 @@ optional<State> rbfs(const Problem<State, Action> &problem, CostFunc cost_func, 
 namespace {
 
 template<typename State, typename Action, typename CostFunc, typename UpdateFunc>
-std::pair<aima::optional<State>, double>
+std::pair<std::optional<State>, double>
 recursive_best_first(const aima::Problem<State, Action> &problem, const State &state,
                      double f_limit, CostFunc cost_func, UpdateFunc update_function) {
 
     auto comparator = [&cost_func](const State &s1, const State &s2) { return cost_func(s1) > cost_func(s2); };
 
     if (problem.goal(state)) {
-        return std::make_pair(aima::optional<State>(state), 0);
+        return std::make_pair(std::optional<State>(state), 0);
     }
 
     std::priority_queue<State, std::vector<State>, decltype(comparator)> successors(comparator);
@@ -55,7 +55,7 @@ recursive_best_first(const aima::Problem<State, Action> &problem, const State &s
         successors.pop();
         // if this node's shortest distance to its child is still greater that the 'saved' checkpoint, stop.
         if (cost_func(best_node) > f_limit) {
-            return std::make_pair(aima::nullopt, cost_func(best_node));
+            return std::make_pair(std::nullopt, cost_func(best_node));
         }
         auto next_best_score = cost_func(successors.top());
 
@@ -74,14 +74,14 @@ recursive_best_first(const aima::Problem<State, Action> &problem, const State &s
         }
     }
 
-    return std::make_pair(aima::nullopt, std::numeric_limits<double>::infinity());
+    return std::make_pair(std::nullopt, std::numeric_limits<double>::infinity());
 }
 
 }   // end nameless namespace
 
 
 template<typename State, typename Action, typename CostFunc, typename UpdateFunc>
-aima::optional<State> aima::rbfs(const Problem<State, Action> &problem, CostFunc cost_func, UpdateFunc update_func) {
+std::optional<State> aima::rbfs(const Problem<State, Action> &problem, CostFunc cost_func, UpdateFunc update_func) {
     return std::get<0>(recursive_best_first(problem, problem.initial_state(), std::numeric_limits<double>::infinity(),
                                             cost_func, update_func));
 }
