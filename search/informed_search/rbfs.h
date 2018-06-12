@@ -63,8 +63,8 @@ recursive_best_first(const aima::Problem<State, Action> &problem, const State &s
         // the newly expanded nodes in 'successors' have smaller f(x) values
         auto pair = recursive_best_first(problem, best_node, std::min(next_best_score, f_limit), cost_func,
                                          update_function);
-        aima::optional<State> return_state {std::get<0>(pair)};
-        double override_score {std::get<1>(pair)};
+
+        auto [return_state, override_score] = pair;
 
         if (return_state) {
             return pair;

@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.9)
-project(aima)
+cmake_minimum_required(VERSION 3.5)
+project(aima LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 
 # include the aima::search library
